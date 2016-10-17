@@ -14,10 +14,10 @@
 }
 
 .mb {
+	width: 75%;
 	background: #FAFAFA;
 	text-align: left;
 	position: relative;
-	width: 75%;
 	margin: 0 auto;
 
 	-webkit-box-shadow: 4px 8px 30px 2px rgba(0,0,0,0.4);
@@ -38,8 +38,61 @@
 	font-size: 1.3rem;
 }
 
+.mb-typeIcon {
+	width: 48px;
+	height: 48px;
+	float: left;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+}
+
+.mb-typeIcon.icon-check {
+	background: url(img/checked.png);
+}
+
+.mb-typeIcon.icon-download {
+	background: url(img/download.png);
+}
+
+.mb-typeIcon.icon-exclamation {
+	background: url(img/exclamation-sign.png);
+}
+
+.mb-typeIcon.icon-info {
+	background: url(img/information.png);
+}
+
+.mb-typeIcon.icon-lock {
+	background: url(img/lock.png);
+}
+
+.mb-typeIcon.icon-play {
+	background: url(img/play.png);
+}
+
+.mb-typeIcon.icon-plus {
+	background: url(img/plus.png);
+}
+
+.mb-typeIcon.icon-question {
+	background: url(img/question-mark.png);
+}
+
+.mb-typeIcon.icon-remove {
+	background: url(img/remove.png);
+}
+
+.mb-typeIcon.icon-stop {
+	background: url(img/stop.png);
+}
+
+.mb-typeIcon.icon-unlock {
+	background: url(img/unlock.png);
+}
+
 .mb-message {
 	color: rgba(0, 0, 0, .54);
+	display: inline;
 }
 
 .mb-buttons {
@@ -54,4 +107,22 @@
     padding: 0.5em 1em;
 	font-weight: bold;
 	display: inline-block;
+}
+
+@media only screen and (min-width : 768px) {
+	.mb {
+		width: 576px;
+	}
+}
+
+@media only screen and (min-width : 992px) {
+	.mb {
+		width: 744px;
+	}
+}
+
+@media only screen and (min-width : 1200px) {
+	.mb {
+		width: 900px;
+	}
 }

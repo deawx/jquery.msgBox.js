@@ -1,4 +1,35 @@
-(function($) {
+(function($, undefined) {
+
+var messageBoxButtonClick = function(e) {
+	var
+	options = e.data[0],
+	buttonIndex = e.data[1],
+	callback = options.buttons[buttonIndex].callback;
+
+	hide(options);
+
+	if (typeof callback === 'function') {
+		callback.call(this, e);
+	}
+};
+
+var show = function(options) {
+	if (options.blend) {
+		options.$wrapper.fadeIn(options.blendDuration);
+	} else {
+		options.$wrapper.show();
+	}
+}
+
+var hide = function(options) {
+	if (options.blend) {
+		options.$wrapper.fadeOut(options.blendDuration, function() {
+			options.$wrapper.remove();
+		});
+	} else {
+		options.$wrapper.remove();
+	}
+}
 
 var createMessageBox = function(options) {
 	var
@@ -6,46 +37,45 @@ var createMessageBox = function(options) {
 	$innerWrapper = $('<div class="mb-innerWrapper">').appendTo($outerWrapper),
 	$msgBox = $('<div class="mb">').appendTo($innerWrapper),
 	$title = $('<div class="mb-title">').appendTo($msgBox),
-	$message = $('<div class="mb-message">').appendTo($msgBox),
+	$content = $('<div class="mb-content">').appendTo($msgBox),
+	$typeIcon = $('<div class="mb-typeIcon">'),
+	$message = $('<div class="mb-message">'),
 	$buttons = $('<div class="mb-buttons">').appendTo($msgBox),
-	$button,
-	buttonIndex, button;
+	$button;
+
+	options.$wrapper = $outerWrapper;
+
+	if (options.type !== undefined) {
+		$content.append($typeIcon.addClass('icon-' + options.type));
+	}
+	$content.append($message);
 
 	$title.text(options.title);
 	$message.text(options.message);
-	for (buttonIndex in options.buttons) {
-		button = options.buttons[buttonIndex];
+	options.buttons.forEach(function(button, buttonIndex) {
 		$('<div class="mb-button">')
 			.text(button.text)
-			.on('click', [button.select], function(e) {
-				$outerWrapper.fadeOut(200, function() {
-					$outerWrapper.remove();
-				});
-				if (e.data === undefined) {
-					return;
-				}
-				if (typeof e.data[0] === 'function') {
-					e.data[0].call(this, e);
-				}
-			})
+			.on('click', [options, buttonIndex], messageBoxButtonClick)
 			.appendTo($buttons);
-		$buttons.append(' ');
-	}
+	});
+
+	$outerWrapper.hide();
 
 	this.append($outerWrapper);
 
-	$outerWrapper.hide().fadeIn(200);
-}
+	show(options);
+};
 
 $.fn.msgBox = function(options) {
 
 	createMessageBox.call(this, $.extend(true, {
 		title: '',
 		message: '',
-		type: 'info',
-		buttons: []
+		buttons: [],
+		blend: false,
+		blendDuration: 400
 	}, options));
 
-}
+};
 
 }(jQuery))
