@@ -1,0 +1,57 @@
+.mb-outerWrapper {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	display: table;
+}
+
+.mb-innerWrapper {
+	position: relative;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.mb {
+	background: #FAFAFA;
+	text-align: left;
+	position: relative;
+	width: 75%;
+	margin: 0 auto;
+
+	-webkit-box-shadow: 4px 8px 30px 2px rgba(0,0,0,0.4);
+	-moz-box-shadow: 4px 8px 30px 2px rgba(0,0,0,0.4);
+	box-shadow: 4px 8px 30px 2px rgba(0,0,0,0.4);
+}
+
+.mb > * {
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+}
+
+.mb-title {
+	color: rgba(0, 0, 0, .87);
+	padding-top: 1.5rem;
+	padding-bottom: 1.5rem;
+	font-weight: bold;
+	font-size: 1.3rem;
+}
+
+.mb-message {
+	color: rgba(0, 0, 0, .54);
+}
+
+.mb-buttons {
+	padding-top: 2rem;
+	padding-bottom: 1rem;
+	text-align: right;
+}
+
+.mb-button {
+	color: #2196F3;
+	cursor: pointer;
+    padding: 0.5em 1em;
+	font-weight: bold;
+	display: inline-block;
+}
