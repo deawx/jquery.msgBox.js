@@ -4,8 +4,9 @@
 	<meta charset="utf-8">
 	<title>jquery.msgBox.js Example</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="jquery.msgBox.js"></script>
-	<link rel="stylesheet" type="text/css" href="jquery.msgBox.css">
+	<script src="../Array.forEach.polyfill.min.js"></script>
+	<script src="../jquery.msgBox.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../jquery.msgBox.min.css">
 	<style type="text/css">
 body {
 	font-family: sans-serif;
@@ -21,9 +22,7 @@ body {
 <body>
 	<h1>jquery.msgBox.js Example</h1>
 	<div><span class="clickArea">Click to show a message box.</span></div>
-	<div class="msgBox-testArea">
-		The message box should appear here.
-	</div>
+	<div class="msgBox-testArea"></div>
 	<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. </p>
 <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </p>
 <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. </p>
@@ -39,23 +38,26 @@ body {
 $('p').hide();
 
 $('span').on('click', function() {
+
 	var $msgBox = $('.msgBox-testArea').msgBox({
-		title: 'Vorschautext anzeigen?',
-		message: 'Der Vorschautext dient dazu, ein besseres Gefühl für die Darstellung von Design-Elementen zu erhalten. Sie können den Text jederzeit wieder ausblenden.',
+		type: 'question',
+		title: 'Show preview text?',
+		message: 'The preview text is used to get a better feel for the representation of design elements. You can show or hide the text at any time.',
 		buttons: [
 			{
-				text: 'Anzeigen',
-				select: function() {
+				text: 'Show',
+				callback: function() {
 					$('p').fadeIn();
 				}
 			},
 			{
-				text: 'Verstecken',
-				select: function() {
+				text: 'Hide',
+				callback: function() {
 					$('p').fadeOut();
 				}
 			}
-		]
+		],
+		blend: true
 	});
 });
 	</script>
